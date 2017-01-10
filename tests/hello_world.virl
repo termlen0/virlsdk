@@ -1,0 +1,21 @@
+<topology
+    xmlns="http://www.cisco.com/VIRL"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
+    <extensions>
+        <entry key="management_network" type="String">user</entry>
+    </extensions>
+    <node location="342,288" type="SIMPLE" subtype="IOSv" name="iosv-1">
+        <extensions>
+            <entry key="config" type="string"/>
+            <entry key="AutoNetkit.ASN" type="Integer">1</entry>
+        </extensions>
+        <interface name="GigabitEthernet0/1" id="0"/>
+    </node>
+    <node location="647,499" type="SIMPLE" subtype="IOSvL2" name="iosvl2-1">
+        <extensions>
+            <entry key="AutoNetkit.ASN" type="Integer">1</entry>
+        </extensions>
+        <interface name="GigabitEthernet0/1" id="0"/>
+    </node>
+    <connection src="/virl:topology/virl:node[2]/virl:interface[1]" dst="/virl:topology/virl:node[1]/virl:interface[1]"/>
+</topology>

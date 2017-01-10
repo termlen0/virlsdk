@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: virlsdk
+Version: 0.1+ng6fd3e02.dirty
+Summary: Add a short description here!
+Home-page: http://...
+Author: Ajay Chenampara
+Author-email: ajay.chenampara@ge.com
+License: none
+Description: =======
+        virlsdk
+        =======
+        
+        
+        Add a short description here!
+        
+        
+        Description
+        ===========
+        
+        A longer description of your project goes here...
+        
+        
+        Note
+        ====
+        
+        This project has been set up using PyScaffold 2.5.7. For details and usage
+        information on PyScaffold see http://pyscaffold.readthedocs.org/.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
