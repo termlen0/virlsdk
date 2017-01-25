@@ -1,11 +1,11 @@
 Metadata-Version: 1.1
 Name: virlsdk
-Version: 0.1.post0.dev1+ng910c7a3.dirty
+Version: 0.2+ng514b6f0.dirty
 Summary: A python SDK for cisco VIRL APIs
 Home-page: http://termlen0.github.io
 Author: Ajay Chenampara
 Author-email: ajay.chenampara@ge.com
-License: LICENSE.rst
+License: mit
 Description: =======
         virlsdk
         =======
