@@ -6,6 +6,8 @@ requirements.txt
 setup.cfg
 setup.py
 test-requirements.txt
+dist/virlsdk-0.1.post0.dev2+ng514b6f0.dirty.tar.gz
+dist/virlsdk-0.2+ng514b6f0.dirty.tar.gz
 docs/Makefile
 docs/authors.rst
 docs/changes.rst
