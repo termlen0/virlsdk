@@ -13,9 +13,13 @@ docs/conf.py
 docs/index.rst
 docs/license.rst
 docs/_static/.gitignore
+tests/.coverage
 tests/conftest.py
+tests/hello_world.virl
+tests/test_virlsdk.py
 virlsdk/__init__.py
-virlsdk/skeleton.py
+virlsdk/launch_sim.py
+virlsdk/stop_sim.py
 virlsdk/virlsdk.py
 virlsdk.egg-info/PKG-INFO
 virlsdk.egg-info/SOURCES.txt

@@ -3,10 +3,9 @@
 import pytest
 import virlsdk.virlsdk as vsdk
 #GLOBALS
-VIRL = "http://10.152.123.31:19399/"
+VIRL = "<Your VIRL SERVER>"
 USERNAME = "guest"
 PASSWORD = "guest"
-flag = 0
 topology_file = "hello_world.virl"
 
 def test_simulations():
@@ -40,3 +39,39 @@ def test_stopsim():
     #Stop the simulation
     resp = myvirl.stopsim(simname)
     assert resp.text == 'SUCCESS'
+
+def test_status():
+    ''' Start a simulation and then test that the status-check API works'''
+    myvirl = vsdk.Virl(virl=VIRL, username=USERNAME, password=PASSWORD)
+    with open(topology_file, 'r') as tf:
+        payload = tf.read()
+    response = myvirl.startsim(payload)
+    simname = response.text
+    response = myvirl.getstatus(simname)
+    assert response.status_code == 200
+    #Clean up the simulation
+    myvirl.stopsim(simname)
+
+def test_node():
+    ''' Start a simulation and then test that the node-check API works'''
+    myvirl = vsdk.Virl(virl=VIRL, username=USERNAME, password=PASSWORD)
+    with open(topology_file, 'r') as tf:
+        payload = tf.read()
+    response = myvirl.startsim(payload)
+    simname = response.text
+    response = myvirl.getnode(simname)
+    assert response.status_code == 200
+    #Clean up the simulation
+    myvirl.stopsim(simname)
+
+def test_interfaces():
+    ''' Start a simulation and then test that the interface-check API works'''
+    myvirl = vsdk.Virl(virl=VIRL, username=USERNAME, password=PASSWORD)
+    with open(topology_file, 'r') as tf:
+        payload = tf.read()
+    response = myvirl.startsim(payload)
+    simname = response.text
+    response = myvirl.getintf(simname)
+    assert response.status_code == 200
+    #Clean up the simulation
+    myvirl.stopsim(simname)

@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>virlsdk.virlsdk &#8212; virlsdk 0.1.post0.dev1+ng910c7a3.dirty documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.post0.dev1+ng910c7a3.dirty',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for virlsdk.virlsdk</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Bunch of functions to abstract the VIRL STD APIs</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<div class="viewcode-block" id="Virl"><a class="viewcode-back" href="../../api/virlsdk.html#virlsdk.virlsdk.Virl">[docs]</a><span class="k">class</span> <span class="nc">Virl</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">virl</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">virl</span> <span class="o">=</span> <span class="n">virl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+
+    <span class="k">def</span> <span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">virl</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">virl</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">virl</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;X-Requested-With&#39;</span><span class="p">:</span> <span class="s1">&#39;Python requests&#39;</span><span class="p">,</span> <span class="s1">&#39;Content-type&#39;</span><span class="p">:</span> \
+                   <span class="s1">&#39;text/xml&#39;</span><span class="p">}</span>
+        <span class="c1">#params = {&#39;mgmt_network&#39;: &#39;Shared flat network&#39;, &#39;mgmt_lxc&#39;: &#39;True&#39;}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">virl</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="p">,</span> \
+                                     <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+        <span class="c1"># response = self.session.post(url = self.virl + path, data = payload, \</span>
+        <span class="c1">#                              headers = headers, params = params)</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Virl.getsims"><a class="viewcode-back" href="../../api/virlsdk.html#virlsdk.virlsdk.Virl.getsims">[docs]</a>    <span class="k">def</span> <span class="nf">getsims</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/simengine/rest/list&quot;</span>
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Virl.stopsim"><a class="viewcode-back" href="../../api/virlsdk.html#virlsdk.virlsdk.Virl.stopsim">[docs]</a>    <span class="k">def</span> <span class="nf">stopsim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simname</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/simengine/rest/stop/&quot;</span> <span class="o">+</span> <span class="n">simname</span>
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Virl.startsim"><a class="viewcode-back" href="../../api/virlsdk.html#virlsdk.virlsdk.Virl.startsim">[docs]</a>    <span class="k">def</span> <span class="nf">startsim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/simengine/rest/launch&quot;</span>
+
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">payload</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Virl.getstatus"><a class="viewcode-back" href="../../api/virlsdk.html#virlsdk.virlsdk.Virl.getstatus">[docs]</a>    <span class="k">def</span> <span class="nf">getstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simname</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/simengine/rest/status/&quot;</span> <span class="o">+</span> <span class="n">simname</span>
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Virl.getnode"><a class="viewcode-back" href="../../api/virlsdk.html#virlsdk.virlsdk.Virl.getnode">[docs]</a>    <span class="k">def</span> <span class="nf">getnode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simname</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/simengine/rest/nodes/&quot;</span> <span class="o">+</span> <span class="n">simname</span>
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Virl.getintf"><a class="viewcode-back" href="../../api/virlsdk.html#virlsdk.virlsdk.Virl.getintf">[docs]</a>    <span class="k">def</span> <span class="nf">getintf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simname</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/simengine/rest/interfaces/&quot;</span> <span class="o">+</span> <span class="n">simname</span>
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Ajay Chenampara.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

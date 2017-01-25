@@ -1,8 +1,7 @@
-<topology
-    xmlns="http://www.cisco.com/VIRL"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
     <extensions>
-        <entry key="management_network" type="String">user</entry>
+        <entry key="management_network" type="String">flat</entry>
     </extensions>
     <node location="342,288" type="SIMPLE" subtype="IOSv" name="iosv-1">
         <extensions>

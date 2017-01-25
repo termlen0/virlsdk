@@ -1,0 +1,5 @@
+---
+virl: "<Your VIRL SERVER>"
+username: "guest"
+password: "guest"
+topology_file: "dmvpn_unmanaged.virl"

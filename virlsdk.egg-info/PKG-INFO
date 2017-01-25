@@ -1,30 +1,33 @@
 Metadata-Version: 1.1
 Name: virlsdk
-Version: 0.1+ng6fd3e02.dirty
-Summary: Add a short description here!
-Home-page: http://...
+Version: 0.1.post0.dev1+ng910c7a3.dirty
+Summary: A python SDK for cisco VIRL APIs
+Home-page: http://termlen0.github.io
 Author: Ajay Chenampara
 Author-email: ajay.chenampara@ge.com
-License: none
+License: LICENSE.rst
 Description: =======
         virlsdk
         =======
         
         
-        Add a short description here!
-        
+        A python SDK wrapper for Cisco's VIRL API.
         
         Description
         ===========
         
-        A longer description of your project goes here...
+        This SDK wraps the following API functions:
+           1. Get the current simulations
+           2. Launch a simulation
+           3. Stop a simulation
+           4. Get the status of a simulation
         
+        Please see: http://virl-dev-innovate.cisco.com/api.docs.php, for details about
+        the APIs themselves
         
         Note
         ====
-        
-        This project has been set up using PyScaffold 2.5.7. For details and usage
-        information on PyScaffold see http://pyscaffold.readthedocs.org/.
+        Please see the docs dir.
         
         
 Platform: UNKNOWN
